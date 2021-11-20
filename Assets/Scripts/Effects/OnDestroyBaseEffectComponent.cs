@@ -5,6 +5,7 @@ namespace Assets.Scripts.Effects
 {
     public abstract class OnDestroyBaseEffectComponent : MonoBehaviour
     {
-        public abstract void ApplyOnDestroyEffect(BallController ballController);
+        protected abstract float EffectDuration { get; }
+        public abstract void ApplyOnDestroyEffect(BallController ballController, PlatformController platformController);
     }
 }

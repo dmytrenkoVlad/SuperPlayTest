@@ -7,27 +7,28 @@ namespace Assets.Scripts.Bricks
 {
     public class BrickController : MonoBehaviour
     {
-        public event Action<BrickController> BrickDestroyed = delegate (BrickController brickController) { };
-        public event Action<int> BrickDamaged = delegate (int newHealth) { };
+        [SerializeField] private BrickType _brickType;
 
-        private void OnCollisionEnter(Collision collision)
+        public event Action<BrickController> BrickDestroyed = delegate (BrickController brickController) { };
+        public event Action<int, BrickType> BrickDamaged = delegate (int newHealth, BrickType brickType) { };
+
+        private void OnCollisionEnter2D(Collision2D collision)
         {
             if (!collision.gameObject.TryGetComponent(out BallController ball))
                 return;
             if (!TryGetComponent(out HealthComponent healthComponent))
-                return;
-            if (!TryGetComponent(out OnDestroyBaseEffectComponent onDestroyEffect))
                 return;
 
             healthComponent.DecreaseHealth(ball.CurrentDamage);
 
             if (healthComponent.IsAlive)
             {
-                BrickDamaged(healthComponent.CurrentHealth);
+                BrickDamaged(healthComponent.CurrentHealth, _brickType);
             }
             else
             {
-                onDestroyEffect.ApplyOnDestroyEffect(ball);
+                if (TryGetComponent(out OnDestroyBaseEffectComponent onDestroyEffect))
+                    onDestroyEffect.ApplyOnDestroyEffect(ball, ball.PlatformController);
                 BrickDestroyed(this);
             }
         }
