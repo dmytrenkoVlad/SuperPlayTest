@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c85a85382a0889544bcef63afa6498b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _brickType: 0
 --- !u!114 &8659283954619514650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,6 +155,10 @@ MonoBehaviour:
   _threeHPColor: {r: 1, g: 0.29803923, b: 0.25882354, a: 1}
   _twoHPColor: {r: 1, g: 0.5686275, b: 0, a: 1}
   _oneHPColor: {r: 0, g: 1, b: 0.19215687, a: 1}
+  _colors:
+  - {r: 0, g: 1, b: 0.19215687, a: 1}
+  - {r: 1, g: 0.5686275, b: 0, a: 1}
+  - {r: 1, g: 0.29803923, b: 0.25882354, a: 1}
   _sprite: {fileID: 2279180235869124497}
   _brickController: {fileID: 6813711926888322562}
   _healthComponent: {fileID: 8659283954619514650}

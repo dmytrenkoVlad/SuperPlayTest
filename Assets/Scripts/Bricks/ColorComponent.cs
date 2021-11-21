@@ -5,9 +5,12 @@ namespace Assets.Scripts.Bricks
 {
     public class ColorComponent : MonoBehaviour
     {
-        [SerializeField] private Color _threeHPColor;
-        [SerializeField] private Color _twoHPColor;
-        [SerializeField] private Color _oneHPColor;
+        private static Color[] _colors = new Color[]
+            {
+                new Color(0, 1, 0.2f, 1), //green
+                new Color(1, 0.56f, 0, 1), //orange
+                new Color(1, 0.3f, 0.25f, 1), //red
+            };
 
         [SerializeField] private SpriteRenderer _sprite;
         [SerializeField] private BrickController _brickController;
@@ -32,17 +35,7 @@ namespace Assets.Scripts.Bricks
 
         private Color GetColorByHealth(int health)
         {
-            switch (health)
-            {
-                case 1:
-                    return _oneHPColor;
-                case 2:
-                    return _twoHPColor;
-                case 3:
-                    return _threeHPColor;
-                default:
-                    throw new ArgumentException($"Unexpected amount of Health - {health}");
-            }
+            return _colors[health - 1];
         }
 
         private void OnDestroy()
