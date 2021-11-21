@@ -25,6 +25,8 @@ namespace Assets.Scripts
         public event Action LevelCompleted = delegate () { };
         public event Action LevelLost = delegate () { };
 
+        private bool _levelCompleted;
+
         private void Awake()
         {
             _brickManager.BrickDestroyed += OnBrickDestroyed;
@@ -42,7 +44,7 @@ namespace Assets.Scripts
             {
                 ResetBallPosition();
             }
-            else
+            else if (!_levelCompleted)
             {
                 LevelLost();
             }
@@ -51,7 +53,10 @@ namespace Assets.Scripts
         private void OnBrickDestroyed()
         {
             if (_brickManager.NonDestroyedBricksCount() == 0)
+            {
+                _levelCompleted = true;
                 LevelCompleted();
+            }
         }
 
         private void StartLevel()
@@ -74,6 +79,7 @@ namespace Assets.Scripts
             _scoreManager.ResetScore();
             _brickManager.ResetBricks();
             _playerController.ResetAttempts();
+            _levelCompleted = false;
         }
 
         private void InitializePlatform()

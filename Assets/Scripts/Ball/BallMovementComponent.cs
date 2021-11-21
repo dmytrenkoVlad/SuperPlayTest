@@ -6,7 +6,7 @@ namespace Assets.Scripts.Ball
     public class BallMovementComponent : MonoBehaviour
     {
         [SerializeField] private Rigidbody2D _rigidbody;
-        [SerializeField] private TrailRenderer trailRenderer;
+        [SerializeField] private TrailRenderer _trailRenderer;
 
         private Vector2 _currentSpeed;
         private Vector2 _movementDirection;
@@ -47,6 +47,7 @@ namespace Assets.Scripts.Ball
             _movementDirection = Vector2.zero;
             transform.position = startPositionTransform.position;
             transform.parent = startPositionTransform;
+            _trailRenderer.Clear();
         }
 
         private void FixedUpdate()

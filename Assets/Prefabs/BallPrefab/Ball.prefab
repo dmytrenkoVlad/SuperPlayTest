@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 8817904748472892458}
-  trailRenderer: {fileID: 7637558742540645707}
+  _trailRenderer: {fileID: 7637558742540645707}
 --- !u!58 &7043649383968323385
 CircleCollider2D:
   m_ObjectHideFlags: 0
